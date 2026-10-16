@@ -1,0 +1,1 @@
+print("Hi, I'm Mahnoor.My dream for now is AI Engineer. one of the problem that can be solved is Product Development and decision making ")
