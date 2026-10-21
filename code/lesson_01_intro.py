@@ -1,1 +1,3 @@
-print("Hi, I'm Mahnoor.My dream for now is AI Engineer. one of the problem that can be solved is Product Development and decision making ")
+name ="Mahnoor"
+goal = "AI agent developer or maybe AI engineer"
+print(f"Hi, I am {name} and I will become {goal}")
