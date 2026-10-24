@@ -88,3 +88,20 @@ Small business owners who want to use AI for marketing, customer service, and bu
 - Learn how to write clear, structured prompts for AI models.
 - Evaluate AI responses for usefulness and accuracy.
 - Build a portfolio of beginner-friendly Python and AI projects.
+
+## Module 1 Final Project: Business Helper Bot
+
+### Intent Design Table — City Care Clinic
+
+| Intent | Keywords to look for | Bot reply |
+|---|---|---|
+| Greeting | `hi`, `hello`, `hey` | Hello! How can I help you today? |
+| Timings | `timing`, `hours`, `open`, `close` | We are open 10 am to 8 pm, Monday to Saturday. |
+| Consultation fee | `fee`, `fees`, `price`, `cost` | Consultation fee is 2,000 PKR. |
+| Location | `location`, `address`, `where` | We are at Main Boulevard, Lahore. |
+| Appointment | `appointment`, `book`, `booking` | Please call the clinic to arrange an appointment. |
+| Complaint | `complaint`, `late`, `problem`, `wrong` | Sorry about that. The clinic manager will call you today. |
+| Human support | `agent`, `human` | Connecting you to a human... |
+
+*Note: Business details are illustrative examples. Confirm the address, fees, hours, and complaint-handling promise with the real business before using them.*
+
