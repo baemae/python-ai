@@ -1,26 +1,55 @@
+"""Tuition Center tutor.
+Asks for a topic and a level (beginner or expert), has an AI model explain the
+topic at that level, then prints the answer together with how many tokens the
+answer cost and how long it took.
+"""
+import time
 from langchain.chat_models import init_chat_model
+from langchain_core.messages import HumanMessage, SystemMessage
 
-llm = init_chat_model("llama3.2", model_provider="ollama")
+#setting a modle and we can change it whenver we need to change it to soem other model or provider
+MODEL_NAME = "ollama:gemma4:31b-cloud "
 
-response = llm.invoke([{"role": "user", "content": "Explain Python in 2 lines for beginner"}])
+def main()-> None:
 
-print(response.text)
+    # using .strip() to remove any stary space in the topic string
+    topic = input("Topic:  ").strip()
+    level = input("Level(beginner or expert):  ").strip()
 
-print(response.response_metadata["model"])          # which model answered
-print(response.usage_metadata["input_tokens"])      # tokens in your prompt
-print(response.usage_metadata["output_tokens"])     # tokens in the answer
-print(response.response_metadata["total_duration"]) # time in nanoseconds
+    #Syestem message that sets the role and the lenth and uses the level
 
+    System_text = (
+        "you are a friendly tutor at a tuition center. "
+        f"Explain the topic at a {level} level."
+        f"Keep the answer to about 3 short sentences"
 
-#turn nanosec into seconds
-seconds = response.response_metadata["total_duration"] / 1_000_000_000
-total_tokens = response.usage_metadata["total_tokens"]
-print(f"{total_tokens} tokens in {seconds:.1f} seconds")
+    )
 
-tutor = init_chat_model("llama3.2", model_provider="ollama", temperature=0.2)
+    #initializing the chat model
+    model = init_chat_model(
+        MODEL_NAME,
+        temperature= 0.2
+    )
+    # Why: a low temperature (0.2) keeps explanations focused and consistent
 
-response = tutor.invoke([
-    {"role": "system", "content": "You are a friendly tutor. Answer in 2 short lines."},
-    {"role": "user", "content": "What is a variable?"},
-])
-print(response.text)
+    messages = [
+        SystemMessage(content=System_text),
+        HumanMessage(content=topic)
+    ]
+
+    start = time.perf_counter()
+    response = model.invoke()
+    elapsed = time.perf_counter() - start
+
+   # Why: usage_metadata holds the provider's own token count, so the
+    # "cost" we report is exact rather than guessed from word counts.
+    total_tokens = response.usage_metadata["total_tokens"]
+
+    print("=" *40)
+    print(response.text)
+    print("=" * 40)
+    print(f"{total_tokens} tokens in {elapsed:.1f} seconds")
+ 
+ 
+if __name__ == "__main__":
+    main()
