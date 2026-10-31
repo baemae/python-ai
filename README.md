@@ -207,4 +207,12 @@ This section documents an example intent design for a fictional business, City C
 - Add automated tests for FAQ matching and quote calculations.
 - Replace illustrative business information with verified details when adapting the project for a real business.
 
+## Module 2 Project: AI Content Studio
 
+A command-line studio that writes a bakery's menu, streams social media posts in different tones, answers prices from real data and chats with customers using only real facts.
+
+Run: `uv run code/project_m2_content_studio.py`
+
+![Session](docs/project-m2-cp1-run.png)
+
+Value: [replace with your own estimate, e.g. "saves the owner about a day of writing menu text and answers the same price questions with no AI cost, so I'd charge a small monthly fee."]
